@@ -1,5 +1,6 @@
 package com.example.koszykowka4p_piatek;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         butoon1 = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
+        if(savedInstanceState !=null){
+            punkty = savedInstanceState.getInt("PUNKTY");
+        }
+
         textViewP.setText(String.valueOf(punkty));
         butoon1.setOnClickListener(
                 new View.OnClickListener() {
@@ -47,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("PUNKTY",punkty);
     }
 }
